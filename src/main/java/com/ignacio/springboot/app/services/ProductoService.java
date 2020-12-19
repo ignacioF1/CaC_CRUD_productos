@@ -1,11 +1,28 @@
 package com.ignacio.springboot.app.services;
 
+import java.util.List;
+
 import com.ignacio.springboot.app.models.Producto;
 
 public interface ProductoService {
 
 	// Metodo interface para poder utilizar tanto en Service implementacion
 	// como tambien en el controller
-	public abstract Producto IdProducto(String idProducto);
-}
+	
+	
 	// Devuelve producto con el id del producto
+	public abstract Producto IdProducto(String idProducto);
+	
+	// Guarda un producto
+	public abstract Producto save(Producto entity);
+
+	// Obtiene Toda la Lista de productos existente en la base de datos
+	public abstract List<Producto> findAll();
+
+	// Modifica los datos de 1 usuario
+	public abstract Producto update(Producto entity);
+	
+	//Elilmino 1 Producto 
+	public abstract Producto deleteById(String idProducto);
+}
+	

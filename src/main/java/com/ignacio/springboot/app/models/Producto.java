@@ -1,19 +1,18 @@
 package com.ignacio.springboot.app.models;
 
 import java.io.Serializable;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.FieldType;
 import org.springframework.data.mongodb.core.mapping.MongoId;
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Data
+
 //En vez de tablas Mongo usa collections
 @Document(collection = "productos")
 public class Producto implements Serializable {

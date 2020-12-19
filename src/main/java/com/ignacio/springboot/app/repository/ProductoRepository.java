@@ -12,7 +12,11 @@ public interface ProductoRepository extends MongoRepository<Producto, Serializab
 	// que necesite contra MongoDB
 	
 	// Internamente actua como una querry de consulta
-	// Busca en base de datos un producto por medio del ID
 	
+	// Busca en base de datos un producto por medio del ID
 	Producto findById(String id);
+	
+	
+	// Elimina en base de datos un producto por medio del ID
+		Producto deleteById(String id);
 }
