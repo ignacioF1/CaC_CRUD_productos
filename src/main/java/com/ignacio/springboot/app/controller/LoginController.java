@@ -6,7 +6,6 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -14,30 +13,27 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
-
-import com.ignacio.springboot.app.models.Producto;
-import com.ignacio.springboot.app.services.ProductoService;
+import com.ignacio.springboot.app.models.Login;
+import com.ignacio.springboot.app.services.LoginService;
 
 @RestController
-@CrossOrigin // acepta peticiones de cualquier request
-// Para que solo responda a un determinado front le ponemos 
-// @CrossOrigin(origins = "http://localhost:8080") por ej
-public class ProductoController {
+//@CrossOrigin
+public class LoginController {
 
 	@Autowired
-	private ProductoService productoService;
+	private LoginService loginService;
 
 	
 	// Metodo POST para crear un nuevo Producto
 	// Persisto o Guardo en la BBDD
-	@PostMapping(value = "/producto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> save(@RequestBody Producto producto) {
+	@PostMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Login> save(@RequestBody Login login) {
 
-		Producto productoData = productoService.save(producto);
+		Login loginData = loginService.save(login);
 
 		// Si el servicio me devolvio un resultado exitoso o 200
-		// devuelvo al FrontEnd todos los datos del Producto Creado
-		return ResponseEntity.ok(productoData);
+		// devuelvo al FrontEnd todos los datos del usuario Creado
+		return ResponseEntity.ok(loginData);
 
 	}
 	
@@ -46,35 +42,35 @@ public class ProductoController {
 	
 	// Metodo GET para obtener toda la lista de productos
 	// existentes en nuestra base de datos
-	@GetMapping(value = "/productos", produces = MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(value = "/logins", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<?> findAll() {
 		// Instancio un nueva lista de Productos
-		List<Producto> productos = new ArrayList<Producto>();
+		List<Login> logins = new ArrayList<Login>();
 
 		// llamo al servicio creado y obtengo la lista
-		productos = productoService.findAll();
+		logins = loginService.findAll();
 
 		// Si el servicio me devolvio un resultado exitoso o 200
 		// devuelvo al FrontEnd toda la lista de productos
-		return ResponseEntity.ok(productos);
+		return ResponseEntity.ok(logins);
 	}
 	
 
 	
 	
 	// Método GET para obtener los datos de 1 producto por su ID
-	@GetMapping(value = "/producto/{idProducto}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> findByProducto(@PathVariable String idProducto) {
+	@GetMapping(value = "/login/{idLogin}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Login> findByLogin(@PathVariable String idLogin) {
 
 		// Instancio un nuevo objeto producto
-		Producto producto = new Producto();
+		Login login = new Login();
 		
 		// Llamo al servicio creado y le paso por parámetro el idProducto
-		producto = productoService.IdProducto(idProducto);
+		login = loginService.IdLogin(idLogin);
 		
 		// Si el servicio me devolvio un resultado exitoso (200)
 		// devuelvo al FrontEnd todos los datos del producto solicitado
-		return ResponseEntity.ok(producto);
+		return ResponseEntity.ok(login);
 		// return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
 	
@@ -83,31 +79,31 @@ public class ProductoController {
 	
 	// Metodo PUT para modificar un producto existente
 	// Persisto y actualizo en la BBDD
-	@PutMapping(value = "/producto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> updateProducto(@RequestBody Producto producto) {
+	@PutMapping(value = "/login", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Login> updateLogin(@RequestBody Login login) {
 
 		// llamo al servicio creado y le paso los nuevos datos
 		// NO TENGO QUE MODIFICAR EL ID, tiene que ser el mismo
-		Producto productoData = productoService.save(producto);
+		Login loginData = loginService.save(login);
 
 		// Si el servicio me devolvio un resultado exitoso o 200
 		// devuelvo al FrontEnd todos los datos del Producto actualizado
-		return ResponseEntity.ok(productoData);
+		return ResponseEntity.ok(loginData);
 
 	}
 
 	// Metodo DELETE para eliminar los datos de 1 producto por su ID
-	@DeleteMapping(value = "/producto/{idProducto}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> deleteFindByIdProducto(@PathVariable String idProducto) {
+	@DeleteMapping(value = "/login/{idLogin}", produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Login> deleteFindByIdLogin(@PathVariable String idLogin) {
 
 		// Instancio un nuevo objeto producto
-		Producto producto = new Producto();
+		Login login = new Login();
 
 		// llamor al servicio creado y le paso por parametro el idProducto
-		producto = productoService.deleteById(idProducto);
+		login = loginService.deleteById(idLogin);
 
 		// Si el servicio me devolvio un resultado exitoso o 200
 		// Elimino todos los datos del Producto solicitado
-		return ResponseEntity.ok(producto);
+		return ResponseEntity.ok(login);
 	}
 }
