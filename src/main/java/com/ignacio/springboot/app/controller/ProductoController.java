@@ -84,7 +84,7 @@ public class ProductoController {
 	// Metodo PUT para modificar un producto existente
 	// Persisto y actualizo en la BBDD
 	@PutMapping(value = "/producto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> updateProducto(@RequestBody Producto producto) {
+	public ResponseEntity<Producto> update(@RequestBody Producto producto) {
 
 		// llamo al servicio creado y le paso los nuevos datos
 		// NO TENGO QUE MODIFICAR EL ID, tiene que ser el mismo

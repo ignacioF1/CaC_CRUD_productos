@@ -44,5 +44,33 @@ export const eliminarProducto = async id => {
     }
 }
 
+// Obtiene un Producto...
+export const obtenerProducto = async id => {
+    
+    try {
+        const resultado = await fetch(`${url}/${id}`, {
+            method: 'GET'});
+        const producto = await resultado.json();
+        return producto;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
+// Edita Producto
+export const editaProducto = async cliente => {
+
+    try {
+        await fetch(url, {
+            method: 'PUT',
+            body: JSON.stringify( cliente ),
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        //window.location.href = 'index.html';
+    } catch (error) {
+        console.log(error);
+    }
+}
 

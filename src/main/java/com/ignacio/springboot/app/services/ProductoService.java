@@ -19,10 +19,10 @@ public interface ProductoService {
 	// Obtiene Toda la Lista de productos existente en la base de datos
 	public abstract List<Producto> findAll();
 
-	// Modifica los datos de 1 usuario
+	// Modifica los datos de 1 producto
 	public abstract Producto update(Producto entity);
 	
-	//Elilmino 1 Producto 
+	//Elilmino 1 producto 
 	public abstract Producto deleteById(String idProducto);
 }
 	
