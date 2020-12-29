@@ -16,10 +16,6 @@ import { nuevoProducto } from './API.js';
         const cantidad = document.querySelector('#cantidad').value;
         const rubro = document.querySelector('#rubro').value;
 
-
-
-
-
         const producto = {
             nombre, 
             descripcion, 
@@ -34,8 +30,13 @@ import { nuevoProducto } from './API.js';
             mostrarAlerta('Todos los campos son obligatorios');
             return;
         }
-
+        
+        $("#response").html("¡Agregado correctamente!").show();
+    	setTimeout(function(){
+        $("#response").hide();
         nuevoProducto(producto);
+        },2000);
+
     }
     
 })();

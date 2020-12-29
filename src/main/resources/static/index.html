@@ -1,73 +1,227 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>proy-crud-prodructos</title>
-    <link rel="stylesheet" href="css/tailwind.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Productos Outlet!</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
+<body>
 
-<body class="min-h-100 bg-gray-200">
-    <div class="md:flex min-h-screen md:align-top">
-        <aside class="md:w-2/5 lg:w-2/5 xl:w-1/5 bg-teal-600 px-5 py-10">
-            <p>
-                <img src="https://i.pinimg.com/originals/8c/50/72/8c507224d7172b6b4e3e20cdec599235.png" alt="yamilaIMG "
-                    width="200" height="200">
-            </p>
-            <h1 class="uppercase text-white tracking-wide text-2xl  font-bold mt-2">FRONT-END </h1>
-            <h4 class="uppercase text-white tracking-wide text-2xl  font-bold mt-2">integracion CRUD PRODUCTOS
-                SPRINGBOOT MONGODB</h4>
-
-            <nav class="mt-8">
-                <a href="/"
-                    class="px-3 py-1 text-white block hover:bg-teal-700 hover:text-yellow-400 bg-teal-700">Productos</a>
-                <a href="nuevo-producto.html"
-                    class="px-3 py-1 text-white block hover:bg-teal-900 mt-2 hover:text-yellow-400">Nuevo Producto</a>
+ <div class="hero">
+        <header class="header contenedor">
+            <div class="logo">
+                <img src="img/logo.gif"style="height: 100px;">
+            </div>
+            <nav class="navegacion">
+            	<a href="nuevo-producto.html">Nuevo producto</a>
+                <button type="button" data-toggle="modal" data-target="#loginModal">Iniciar Sesión/Registrarse</button>
             </nav>
-            <p class="mt-10 text-white">ALUMNES CODO A CODO JAVAFULLSTAC comision 2011</p>
+        </header>
 
-            <p class="mt-10 text-white">Administra tus productos- JSONServer</p>
-        </aside>
-        <!--sidebar-->
-        <main class="md:w-3/5  xl:w-4/5 px-5 py-10 bg-gray-200">
+    <main>
+        <!-- <div class="contenido-hero contenedor">
+            <h1>Productos - Outlet! - ¡Los mejores precios!</h1>
 
+            <form action="/buscador" method="POST" class="formulario formulario-buscar" id="formulario" >
+                <input type="text" name="busqueda" class="busqueda" placeholder="Bicicleta, Perfume, Notebook, Maceta">
+                <input type="submit" value="Buscar" id="btn-submit">
+            </form>
+        </div> -->
 
+        <div class="md:w-3/5  xl:w-4/5 px-5 py-10 bg-light">
+		<div id="response" class="text-center text-danger display-4"></div> <!-- Mensajes al usuario -->
             <h2 class="text-3xl font-light text-center">PRODUCTOS</h2>
 
-            <div class="flex flex-col mt-10">
-                <div class="py-2 overflow-x-auto">
-                    <div
-                        class="align-middle inline-block min-w-full shadow overflow-hidden sm:rounded-lg border-b border-gray-200">
-                        <table class="min-w-full">
-                            <thead class="bg-gray-100 ">
-                                <tr>
-                                    <th
-                                        class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                                        Nombre Producto
-                                    </th>
-                                    <th
-                                        class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                                        Marca
-                                    </th>
-                                    <th
-                                        class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                                        Precio
-                                    </th>
-                                    <th
-                                        class="px-6 py-3 border-b border-gray-200  text-left text-xs leading-4 font-medium text-gray-600 uppercase tracking-wider">
-                                        Acciones
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody id="listado-productos" class="bg-white"></tbody>
-                        </table>
-                    </div>
-                </div>
-            </div>
-        </main>
-    </div>
-    <script src="js/app.js" type="module"></script>
-</body>
+          <div class="table-responsive-md">
+            <table class="table">
+              <thead>
+                  <tr class="tablehead">
+                    <th scope="col">Nombre/Producto</th>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Acciones</th>
+                  </tr>
+              </thead>
+              <tbody id="listado-productos"></tbody>
+            </table>
+          </div>
+        </div>
 
+<!-- LO MAS VENDIDO -->
+    <div class="contenido contenedor">
+        <section class="lomas">
+            <h2>Lo más vendido ...</h2>
+            <div class="contenedor-cards">
+                    <div class="card">
+                        <img src="img/perfume.jpg">
+                        <div class="info">
+                            <p class="categoria concierto">perfumería</p>
+                            <p class="titulo">Perfume CH</p>
+                            <p class="precio">$4,200</p>
+                        </div>
+                    </div> <!--.card-->
+                    <div class="card">
+                        <img src="img/bici.jpg">
+                        <div class="info">
+                            <p class="categoria concierto">movilidad</p>
+                            <p class="titulo">Bicicleta niña/o</p>
+                            <p class="precio">$10000</p>
+                        </div>
+                    </div> <!--.card-->
+                    <div class="card">
+                        <img src="img/olla.jpg">
+                        <div class="info">
+                            <p class="categoria clase">cocina</p>
+                            <p class="titulo">Olla teflón N°24</p>
+                            <p class="precio">$2900</p>
+                        </div>
+                    </div> <!--.card-->
+                    <div class="card">
+                        <img src="img/planta.jpg">
+                        <div class="info">
+                            <p class="categoria paseo">jardinería</p>
+                            <p class="titulo">Planta de interior</p>
+                            <p class="precio">$200</p>
+                        </div>
+                    </div> <!--.card-->
+            </div> <!--.columnas4 cuadros-->
+        </section>
+    </div>
+</main>
+</div>
+<!-- FOOTER -->
+    <footer id="footer" class="footer">
+        <div class="contenedor">
+                <div class="nav-footer">
+                    <h3 class="titulo-footer">Codo a Codo 4.0</h3>
+                    <nav class="menu">
+                        <a href="#">Temas</a>
+                        <a href="#">Profesor</a>
+                        <a href="#">Salida laboral</a>
+                    </nav>
+                </div>
+
+                <div class="nav-footer">
+                    <h3 class="titulo-footer">FrontEnd</h3>
+                    <nav class="menu">
+                        <a href="#">HTML</a>
+                        <a href="#">CSS</a>
+                        <a href="#">Bootstrap</a>
+                        <a href="#">JavaScript</a>
+                    </nav>
+                </div>
+
+                <div class="nav-footer">
+                    <h3 class="titulo-footer">BackEnd</h3>
+                    <nav class="menu">
+                        <a href="#">JAVA</a>
+                        <a href="#">SpringBoot</a>
+                        <a href="#">MongoDB</a>
+                    </nav>
+                </div>
+
+                <div class="nav-footer">
+                    <nav class="sociales">
+                        <ul>
+                            <li><a href="http://facebook.com" target="_blank"><span>Facebook</span></a></li>
+                            <li><a href="http://twitter.com" target="_blank"><span>Twitter</span></a></li>
+                            <li><a href="http://instagram.com" target="_blank"><span>Instagram</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+    </footer>
+    <a href="#footer" class="btn-flotante">Mas..</a>
+    
+  
+    <!-- Modal eliminar -->
+<div class="modal fade" id="eliminarModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLabel">Eliminar producto</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        ¿Está seguro de eliminar este producto?
+        ¡No se puede deshacer esta acción!
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+        <button type="button" id="eliminar" class="btn btn-primary">Eliminar</button>
+      </div>
+    </div>
+  </div>
+</div>
+    <!-- Modal eliminar -->    
+
+
+<!-- Modal login-->
+  <div class="modal fade" id="loginModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+          
+          <h4><span class="glyphicon glyphicon-lock"></span>Iniciar Sesión/Registrarse</h4>
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form" class="needs-validation" id="loginForm" novalidate>
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span> Usuario</label>
+              <input type="email" class="form-control" id="usrname" placeholder="Ingrese email" required>
+              <div class="valid-feedback">
+      		  Correcto!
+    		  </div>
+    		  <div class="invalid-feedback">
+        	  Ingrese una dirección de email válida.
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
+              <input type="text" class="form-control" id="psw" placeholder="Ingrese contraseña" required>
+              <div class="valid-feedback">
+      		  Correcto!
+    		  </div>
+    		  <div class="invalid-feedback">
+        	  Ingrese una contraseña.
+      		  </div>
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked> Recordarme</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span> Iniciar</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
+          <p>No es miembro? <a href="#">Registrarse</a></p>
+          <p>Olvidó su <a href="#">Contraseña?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+<!-- Modal login-->
+
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<!-- Scripts -->
+<script src="js/app.js" type="module"></script>
+<script src="js/footer.js"></script>
+<script src="js/validate.js"></script>
+</body>
 </html>

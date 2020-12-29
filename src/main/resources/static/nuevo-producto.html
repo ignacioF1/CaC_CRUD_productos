@@ -1,40 +1,42 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>proy-crud-prodructos</title>
-    <link rel="stylesheet" href="css/tailwind.min.css">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Nuevo producto</title>
+    <link rel="stylesheet" href="https://necolas.github.io/normalize.css/8.0.0/normalize.css">
+    <link href="https://fonts.googleapis.com/css?family=Lato:400,700,900" rel="stylesheet">
+    <link rel="stylesheet" href="css/fontawesome-all.min.css">
+    <link rel="stylesheet" href="css/styles.css">
+	<!-- CSS only -->
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+
 </head>
-
-<body class="min-h-100 bg-gray-200">
-    <div class="md:flex min-h-screen md:align-top">
-        <aside class="md:w-2/5 lg:w-2/5 xl:w-1/5 bg-teal-600 px-5 py-10">
-            <p>
-                <img src="https://i.pinimg.com/originals/8c/50/72/8c507224d7172b6b4e3e20cdec599235.png" alt="yamilaIMG "
-                    width="200" height="200">
-            </p>
-            <h1 class="uppercase text-white tracking-wide text-2xl  font-bold mt-2">CRUD PRODUCTOS SPRINGBOOT MONGODB
-            </h1>
-            <p class="mt-10 text-white">ALUMNES CODO A CODO JAVAFULLSTAC comision 2011</p>
-
-            <p class="mt-10 text-white">Administra tus productos- JSONServer</p>
-            <nav class="mt-8">
-                <a href="/"
-                    class="px-3 py-1 text-white block hover:bg-teal-700 hover:text-yellow-400 bg-teal-700">Productos</a>
-                <a href="nuevo-producto.html"
-                    class="px-3 py-1 text-white block hover:bg-teal-900 mt-2 hover:text-yellow-400">Nuevo Producto</a>
+<body>
+ <div class="hero">
+        <header class="header contenedor">
+            <div class="logo">
+                <img src="img/logo.gif"style="height: 100px;">
+            </div>
+            <nav class="navegacion">
+            	<a href="index.html">Listado productos</a>
             </nav>
-        </aside>
-        <!--sidebar-->
-        <main class="md:w-3/5  xl:w-4/5 px-5 py-10 bg-gray-200">
-            <h1 class="text-3xl font-light text-center">Nuevo Producto</h1>
+        </header>
 
-            <div class="flex flex-col mt-10 items-center">
+    <main>
+
+<div id="response" class="text-center text-danger display-4"></div> <!-- Mensajes al usuario -->
+    <div class="md:flex min-h-screen md:align-top">
+        
+            <h1 class="text-3xl font-light text-center">Nuevo Producto</h1>
+            
+		<main class="row d-flex justify-content-center">
+           <!-- <div class="flex flex-col mt-10 items-center">
                 <div class="-my-2 py-2 overflow-x-auto sm:-mx-6 sm:px-6 lg:-mx-8 lg:px-8 w-10/12 md:w-8/12 lg:w-6/12">
-                    <div class=" shadow overflow-hidden sm:rounded-lg border-b border-gray-200 ">
-                        <form id="formulario" class="bg-white p-3" method="POST">
+                    <div class=" shadow overflow-hidden sm:rounded-lg border-b border-gray-200 "> -->
+                    
+                        <form id="formulario" class="bg-white p-3 border border-success rounded" method="POST">
                             <div class="mb-4">
                                 <label class="block text-gray-700 text-sm font-bold mb-2" for="nombre">Nombre</label>
                                 <input
@@ -77,17 +79,71 @@
                                     class="appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
                                     id="rubro" name="rubro" type="text" placeholder="Rubro" />
                             </div>
+                            <div class="d-flex justify-content-between bg-light mb-3">
                             <input type="submit"
-                                class="bg-teal-600 hover:bg-teal-900 w-full mt-5 p-2 text-white uppercase font-bold"
+                                class="bg-success hover:bg-teal-900 mt-1 p-2 col text-white uppercase font-bold rounded"
                                 value="Agregar PRODUCTO" />
+                            </div>
                         </form>
-                    </div>
-                </div>
-            </div>
+
         </main>
     </div>
 
     <script src="js/nuevoProducto.js" type="module"></script>
-</body>
 
+</main>
+</div>
+
+<!-- FOOTER -->
+    <footer id="footer" class="footer">
+        <div class="contenedor">
+                <div class="nav-footer">
+                    <h3 class="titulo-footer">Codo a Codo 4.0</h3>
+                    <nav class="menu">
+                        <a href="#">Temas</a>
+                        <a href="#">Profesor</a>
+                        <a href="#">Salida laboral</a>
+                    </nav>
+                </div>
+
+                <div class="nav-footer">
+                    <h3 class="titulo-footer">FrontEnd</h3>
+                    <nav class="menu">
+                        <a href="#">HTML</a>
+                        <a href="#">CSS</a>
+                        <a href="#">Bootstrap</a>
+                        <a href="#">JavaScript</a>
+                    </nav>
+                </div>
+
+                <div class="nav-footer">
+                    <h3 class="titulo-footer">BackEnd</h3>
+                    <nav class="menu">
+                        <a href="#">JAVA</a>
+                        <a href="#">SpringBoot</a>
+                        <a href="#">MongoDB</a>
+                    </nav>
+                </div>
+
+                <div class="nav-footer">
+                    <nav class="sociales">
+                        <ul>
+                            <li><a href="http://facebook.com" target="_blank"><span>Facebook</span></a></li>
+                            <li><a href="http://twitter.com" target="_blank"><span>Twitter</span></a></li>
+                            <li><a href="http://instagram.com" target="_blank"><span>Instagram</span></a></li>
+                        </ul>
+                    </nav>
+                </div>
+        </div>
+    </footer>
+    <a href="#footer" class="btn-flotante">Mas..</a>
+
+<!-- Scripts -->
+<script src="js/app.js" type="module"></script>
+<script src="js/footer.js"></script>
+<!-- JS, Popper.js, and jQuery -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+</body>
 </html>
