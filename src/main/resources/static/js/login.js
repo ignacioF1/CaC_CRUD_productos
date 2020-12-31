@@ -9,14 +9,19 @@ const logoutBad = "Error al salir";
 const registOk = "¡Registrado correctamente!";
 const registBad = "Error al registrarse";
 
-
 var btnLogin = document.getElementById('login');
 var btnLogout = document.getElementById('logout');
 var btnRegister = document.getElementById('registrarse');
 
+// LOGIN
+
 btnLogin.addEventListener('click', function(evt) {
 	evt.preventDefault();
 	var form = evt.target.form;
+
+	var form = btnLogin.form;
+	
+	if ($(form).hasClass("is-valid")){
 	$.post("/api/login",
 		{
 			email: form["usrname"].value,
@@ -35,7 +40,14 @@ btnLogin.addEventListener('click', function(evt) {
 		$("#response").hide();
 		location.reload();
 	}, 2000);
+} 
+
+
 });
+
+
+
+// LOGOUT
 
 btnLogout.addEventListener('click', function(evt) {
 	evt.preventDefault();
@@ -54,6 +66,8 @@ btnLogout.addEventListener('click', function(evt) {
 		location.reload();
 	}, 2000);
 });
+
+// Registración de un usuario nuevo
 
 btnRegister.addEventListener('click', function(evt) {
 	evt.preventDefault();
@@ -79,10 +93,10 @@ btnRegister.addEventListener('click', function(evt) {
 });
 
 
+// Obtiene el usuario actual
+
 document.addEventListener('DOMContentLoaded', obtenerUser);
-
 	async function obtenerUser() {
-
     try {
         const resultado = await fetch("/person");
         const usuario = await resultado.json();
@@ -97,3 +111,14 @@ document.addEventListener('DOMContentLoaded', obtenerUser);
     }
 }
 
+
+// Muestra contraseña al clickear check
+
+function passVisible() {
+  var x = document.getElementById("psw");
+  if (x.type === "password") {
+    x.type = "text";
+  } else {
+    x.type = "password";
+  }
+}
