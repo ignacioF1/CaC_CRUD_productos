@@ -14,16 +14,16 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 
 //En vez de tablas Mongo usa collections
-@Document(collection = "login")
-public class Login implements Serializable {
+@Document(collection = "person")
+public class Person implements Serializable {
 
 	private static final long serialVersionUID = 3431902390885211826L;
 	@Id
 	@MongoId(value = FieldType.OBJECT_ID)
 	private String id; // Es String para Mongo (Object ID)
-	private String nombre;
-	private String apellido;
-	private Integer edad;
+	//private String nombre;
+	//private String apellido;
+	//private Integer edad;
 	private String email;
 	private String password;
 }

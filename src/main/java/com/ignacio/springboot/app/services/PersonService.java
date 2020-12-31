@@ -1,27 +1,27 @@
 package com.ignacio.springboot.app.services;
 
 import java.util.List;
-import com.ignacio.springboot.app.models.Login;
+import com.ignacio.springboot.app.models.Person;
 
-public interface LoginService {
+public interface PersonService {
 
 	// Metodo interface para poder utilizar tanto en Service implementacion
 	// como tambien en el controller
 	
 	
 	// Devuelve producto con el id del producto
-	public abstract Login IdLogin(String idLogin);
+	public abstract Person IdPerson(String idPerson);
 	
 	// Guarda un producto
-	public abstract Login save(Login entity);
+	public abstract Person save(Person entity);
 
 	// Obtiene Toda la Lista de productos existente en la base de datos
-	public abstract List<Login> findAll();
+	public abstract List<Person> findAll();
 
 	// Modifica los datos de 1 usuario
-	public abstract Login update(Login entity);
+	public abstract Person update(Person entity);
 	
 	//Elilmino 1 Producto 
-	public abstract Login deleteById(String idLogin);
+	public abstract Person deleteById(String idLogin);
 }
 	

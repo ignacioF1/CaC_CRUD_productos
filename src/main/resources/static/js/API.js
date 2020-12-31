@@ -1,7 +1,7 @@
 const url = 'http://localhost:8080/producto';
 const urlproductos= 'http://localhost:8080/productos';
 
-// Cuando se crea un nuevo Producto
+// Crea un nuevo Producto
 export const nuevoProducto = async cliente => {
 
     try {

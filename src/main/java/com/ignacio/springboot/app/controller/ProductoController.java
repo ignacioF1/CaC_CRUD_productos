@@ -4,8 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,9 +17,13 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.ignacio.springboot.app.models.Person;
 import com.ignacio.springboot.app.models.Producto;
+import com.ignacio.springboot.app.repository.PersonRepository;
+import com.ignacio.springboot.app.repository.Util;
 import com.ignacio.springboot.app.services.ProductoService;
 
 @RestController
@@ -25,14 +33,23 @@ import com.ignacio.springboot.app.services.ProductoService;
 public class ProductoController {
 
 	@Autowired
-	private ProductoService productoService;
+	private PasswordEncoder passwordEncoder;
 
+	@Autowired
+	private ProductoService productoService;
 	
+	@Autowired
+	PersonRepository personRepository;
+
 	// Metodo POST para crear un nuevo Producto
 	// Persisto o Guardo en la BBDD
 	@PostMapping(value = "/producto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> save(@RequestBody Producto producto) {
+	
+		public ResponseEntity<Producto> save(@RequestBody Producto producto, Authentication authentication) {
 
+		if (Util.isGuest(authentication)) {   // Check if guest
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
 		Producto productoData = productoService.save(producto);
 
 		// Si el servicio me devolvio un resultado exitoso o 200
@@ -40,10 +57,7 @@ public class ProductoController {
 		return ResponseEntity.ok(productoData);
 
 	}
-	
-	
-	
-	
+
 	// Metodo GET para obtener toda la lista de productos
 	// existentes en nuestra base de datos
 	@GetMapping(value = "/productos", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -58,34 +72,31 @@ public class ProductoController {
 		// devuelvo al FrontEnd toda la lista de productos
 		return ResponseEntity.ok(productos);
 	}
-	
 
-	
-	
 	// Método GET para obtener los datos de 1 producto por su ID
 	@GetMapping(value = "/producto/{idProducto}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<Producto> findByProducto(@PathVariable String idProducto) {
 
 		// Instancio un nuevo objeto producto
 		Producto producto = new Producto();
-		
+
 		// Llamo al servicio creado y le paso por parámetro el idProducto
 		producto = productoService.IdProducto(idProducto);
-		
+
 		// Si el servicio me devolvio un resultado exitoso (200)
 		// devuelvo al FrontEnd todos los datos del producto solicitado
 		return ResponseEntity.ok(producto);
 		// return new ResponseEntity<Producto>(producto, HttpStatus.OK);
 	}
-	
-	
-	
-	
+
 	// Metodo PUT para modificar un producto existente
 	// Persisto y actualizo en la BBDD
 	@PutMapping(value = "/producto", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> update(@RequestBody Producto producto) {
+	public ResponseEntity<Producto> update(@RequestBody Producto producto, Authentication authentication) {
 
+		if (Util.isGuest(authentication)) {   // Check if guest
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
 		// llamo al servicio creado y le paso los nuevos datos
 		// NO TENGO QUE MODIFICAR EL ID, tiene que ser el mismo
 		Producto productoData = productoService.save(producto);
@@ -98,8 +109,12 @@ public class ProductoController {
 
 	// Metodo DELETE para eliminar los datos de 1 producto por su ID
 	@DeleteMapping(value = "/producto/{idProducto}", produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Producto> deleteFindByIdProducto(@PathVariable String idProducto) {
+	public ResponseEntity<Producto> deleteFindByIdProducto(@PathVariable String idProducto,Authentication authentication) {
 
+		if (Util.isGuest(authentication)) {   // Check if guest
+			return new ResponseEntity<>(HttpStatus.FORBIDDEN);
+		}
+		
 		// Instancio un nuevo objeto producto
 		Producto producto = new Producto();
 

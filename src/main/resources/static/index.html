@@ -20,24 +20,17 @@
             <div class="logo">
                 <img src="img/logo.gif"style="height: 100px;">
             </div>
+            <span id="currentUser">currentUser</span>
             <nav class="navegacion">
-            	<a href="nuevo-producto.html">Nuevo producto</a>
-                <button type="button" data-toggle="modal" data-target="#loginModal">Iniciar Sesión/Registrarse</button>
+            	<a href="nuevo-producto.html" id="nuevoProducto">Nuevo producto</a>
+                <button type="button" data-toggle="modal" data-target="#loginModal">Sesión/Registrarse</button>
             </nav>
         </header>
 
     <main>
-        <!-- <div class="contenido-hero contenedor">
-            <h1>Productos - Outlet! - ¡Los mejores precios!</h1>
-
-            <form action="/buscador" method="POST" class="formulario formulario-buscar" id="formulario" >
-                <input type="text" name="busqueda" class="busqueda" placeholder="Bicicleta, Perfume, Notebook, Maceta">
-                <input type="submit" value="Buscar" id="btn-submit">
-            </form>
-        </div> -->
 
         <div class="md:w-3/5  xl:w-4/5 px-5 py-10 bg-light">
-		<div id="response" class="text-center text-danger display-4"></div> <!-- Mensajes al usuario -->
+		<div id="response" class="text-center text-danger"></div> <!-- Mensajes al usuario!! -->
             <h2 class="text-3xl font-light text-center">PRODUCTOS</h2>
 
           <div class="table-responsive-md">
@@ -176,7 +169,7 @@
           <h4><span class="glyphicon glyphicon-lock"></span>Iniciar Sesión/Registrarse</h4>
         </div>
         <div class="modal-body" style="padding:40px 50px;">
-          <form role="form" class="needs-validation" id="loginForm" novalidate>
+          <form id="login-form" role="form" class="needs-validation" novalidate>
             <div class="form-group">
               <label for="usrname"><span class="glyphicon glyphicon-user"></span> Usuario</label>
               <input type="email" class="form-control" id="usrname" placeholder="Ingrese email" required>
@@ -189,7 +182,7 @@
             </div>
             <div class="form-group">
               <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
-              <input type="text" class="form-control" id="psw" placeholder="Ingrese contraseña" required>
+              <input type="password" class="form-control" id="psw" placeholder="Ingrese contraseña" required>
               <div class="valid-feedback">
       		  Correcto!
     		  </div>
@@ -202,10 +195,14 @@
             </div>
               <button type="submit" class="btn btn-success btn-block" id="login"><span class="glyphicon glyphicon-off"></span> Iniciar</button>
           </form>
+          <br>
+          <form id="logout-form">
+			<button id="logout" type="submit" class="btn btn-info btn-block">Cerrar sesión</button>
+		  </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-danger btn-default pull-left" data-dismiss="modal"><span class="glyphicon glyphicon-remove"></span> Cancelar</button>
-          <p>No es miembro? <a href="#">Registrarse</a></p>
+          <p>No es miembro? <a id="registrarse" href="#">Registrarse</a></p>
           <p>Olvidó su <a href="#">Contraseña?</a></p>
         </div>
       </div>
@@ -287,12 +284,13 @@
 
 
 <!-- JS, Popper.js, and jQuery -->
-<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
 <!-- Scripts -->
 <script src="js/app.js" type="module"></script>
 <script src="js/footer.js"></script>
 <script src="js/validate.js"></script>
+<script src="js/login.js"></script>
 </body>
 </html>

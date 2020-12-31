@@ -4,25 +4,25 @@ import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import com.ignacio.springboot.app.models.Login;
-import com.ignacio.springboot.app.repository.LoginRepository;
-import com.ignacio.springboot.app.services.LoginService;
+import com.ignacio.springboot.app.models.Person;
+import com.ignacio.springboot.app.repository.PersonRepository;
+import com.ignacio.springboot.app.services.PersonService;
 
 
-@Service("loginService")
-public class LoginServiceImpl implements LoginService {
+@Service("personService")
+public class PersonServiceImpl implements PersonService {
 
 	// Inyecto el Repository
 	// para usar sus funciones e implementar
 	// en la lógica de los servicios
 	@Autowired
-	private LoginRepository loginRepository;
+	private PersonRepository personRepository;
 	// Con este contrato o método de la capa actual
 	// creo la lógica para poder hacer la consulta con mi base de datos Mongo
 	@Override
-	public Login IdLogin(String idLogin) {
+	public Person IdPerson(String idPerson) {
 		// Instancio un nuevo objeto producto
-		Login login = null;
+		Person person = null;
 
 		// Envolvemos en una validación
 		// para que en caso de que falle por algún motivo esa consulta
@@ -30,7 +30,7 @@ public class LoginServiceImpl implements LoginService {
 		
 		try { // validación, en caso de romper avisa
 
-			login = loginRepository.findById(idLogin);
+			person = personRepository.findById(idPerson);
 
 		} catch (Exception e) {
 			
@@ -38,15 +38,15 @@ public class LoginServiceImpl implements LoginService {
 
 		}
 		// En caso de éxito devuelvo todos los datos que contiene Producto
-		return login;
+		return person;
 	}
 
 	
 	
 	@Override
-	public Login save(Login entity) {
+	public Person save(Person entity) {
 		// Instancio un nuevo objeto producto
-		Login login = null;
+		Person person = null;
 		
 		
 		// Envolvemos en una validacion
@@ -54,38 +54,38 @@ public class LoginServiceImpl implements LoginService {
 		// me imprima en la consola en que parte fallo mi app
 		try {
 
-			login = loginRepository.save(entity);
+			person = personRepository.save(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		// En caso de exito devuelvo todos los datos que contiene Producto
-		return login;
+		return person;
 	}
 
 	@Override
-	public List<Login> findAll() {
+	public List<Person> findAll() {
 		// Instancio una Lista de Productos 
-		List<Login> lstLogins = new ArrayList<Login>();
+		List<Person> lstPersons = new ArrayList<Person>();
 		
 		// Envolvemos en una validacion
 		// para que en caso falle por algun motivo esa consulta
 		// me imprima en la consola en que parte fallo mi app
 
 		try {
-			lstLogins = loginRepository.findAll();
+			lstPersons = personRepository.findAll();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		
 		// En caso de exito devuelvo Lista de todos Los Productos 
-		return lstLogins;
+		return lstPersons;
 	}
 
 	@Override
-	public Login update(Login entity) {
+	public Person update(Person entity) {
 		// Instancio un nuevo objeto producto
-		Login login = null;
+		Person person = null;
 		
 		
 		// Envolvemos en una validacion
@@ -94,25 +94,25 @@ public class LoginServiceImpl implements LoginService {
 
 		try {
 
-			login = loginRepository.save(entity);
+			person = personRepository.save(entity);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		// En caso de exito devuelvo todos los datos que contiene Producto
-		return login;
+		return person;
 	}
 
 	@Override
-	public Login deleteById(String idLogin) {
+	public Person deleteById(String idPerson) {
 		// Instancio un nuevo objeto producto
-		Login login = null;
+		Person person = null;
 
 		// Envolvemos en una validacion
 		// para que en caso falle por algun motivo esa consulta
 		// me imprima en la consola en que parte fallo mi app
 		try {
 
-			login = loginRepository.deleteById(idLogin);
+			person = personRepository.deleteById(idPerson);
 
 		} catch (Exception e) {
 
@@ -120,7 +120,7 @@ public class LoginServiceImpl implements LoginService {
 		}
 
 		// En caso de exito devuelvo todos los datos que contiene Producto
-		return login;
+		return person;
 	}
 
 }

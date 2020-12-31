@@ -1,6 +1,8 @@
 import { mostrarAlerta, validar } from './funciones.js';
 import { nuevoProducto } from './API.js';
 
+// Mensajes
+const agregado = "¡Agregado correctamente!";
 
 (function () {
     const formulario = document.querySelector('#formulario');
@@ -31,7 +33,7 @@ import { nuevoProducto } from './API.js';
             return;
         }
         
-        $("#response").html("¡Agregado correctamente!").show();
+        $("#response").html(agregado).show();
     	setTimeout(function(){
         $("#response").hide();
         nuevoProducto(producto);

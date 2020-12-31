@@ -49,6 +49,10 @@ img {
     color: #940ad4;
 }
 
+#currentUser {
+	font-weight:bold;
+	color: grey;
+}
 /* Interfaz **/
 
 .btn-flotante {
@@ -301,6 +305,10 @@ main > section {
 	background-color:#D3D3D3;
 }
 
+#response{
+	font-size:25px;
+	font-weight: bold;
+}
 /** Redes Socialaes**/
 
 .sociales ul {

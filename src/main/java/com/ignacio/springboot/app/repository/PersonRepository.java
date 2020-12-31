@@ -2,12 +2,13 @@ package com.ignacio.springboot.app.repository;
 
 import java.io.Serializable;
 import org.springframework.data.mongodb.repository.MongoRepository;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
-import com.ignacio.springboot.app.models.Login;
+import com.ignacio.springboot.app.models.Person;
 
 
-@Repository("loginRepository")
-public interface LoginRepository extends MongoRepository<Login, Serializable> {
+@Repository("personRepository")
+public interface PersonRepository extends MongoRepository<Person, Serializable> {
 
 	// Dentro de este bloque de código voy a hacer las consultas
 	// que necesite contra MongoDB
@@ -15,9 +16,10 @@ public interface LoginRepository extends MongoRepository<Login, Serializable> {
 	// Internamente actua como una querry de consulta
 	
 	// Busca en base de datos un producto por medio del ID
-	Login findById(String id);
+	Person findById(String id);
 	
+	Person findByEmail(@Param("name") String name);
 	
 	// Elimina en base de datos un producto por medio del ID
-		Login deleteById(String id);
+		Person deleteById(String id);
 }
