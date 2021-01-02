@@ -47,6 +47,7 @@ const eliCorre = "¡Eliminado correctamente!";
 		function realizarAcciones(e) {
 		
 			// Click en ELIMINAR
+			
 			if (e.target.classList.contains('eliminar')) {
 				const ProductoId = e.target.dataset.producto;
 
@@ -59,17 +60,21 @@ const eliCorre = "¡Eliminado correctamente!";
 					eliminarProducto(ProductoId);
 					if ($("#currentUser").text() == "Usuario: Invitado") {
 						$("#response").html(debeIngreEli).show();
+						setTimeout(function() {
+							$("#response").hide();
+						}, 2000);
 					} else {
 						$("#response").html(eliCorre).show();
-					}
-					setTimeout(function() {
+						setTimeout(function() {
 						$("#response").hide();
 						location.reload();
 					}, 2000);
+					}
 				});
 			}
 
 			// Click en EDITAR
+			
 			if (e.target.classList.contains('editar')) {
 
 				const ProductoId = e.target.dataset.producto;
@@ -126,19 +131,18 @@ const eliCorre = "¡Eliminado correctamente!";
 						editaProducto(producto);
 						if ($("#currentUser").text() == "Usuario: Invitado") {
 							$("#response").html(debeIngreEdit).show();
+							setTimeout(function() {
+							$("#response").hide();
+						}, 2000);
 						} else {
 							$("#response").html(editado).show();
-						}
-						setTimeout(function() {
+							setTimeout(function() {
 							$("#response").hide();
 							location.reload();
 						}, 2000);
+						}
 					}
-
 				});
-
 			}
-
 		}
-
 	})();           

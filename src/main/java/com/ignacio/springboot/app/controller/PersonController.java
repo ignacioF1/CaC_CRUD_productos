@@ -1,8 +1,5 @@
 package com.ignacio.springboot.app.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -74,6 +71,12 @@ public class PersonController {
 
 		if (personRepository.findByEmail(email) != null) {
 			return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+		}
+		if(Util.isValid(email) == false) {
+			return new ResponseEntity<>("Email not correct", HttpStatus.FORBIDDEN);
+		}
+		if(password.length() < 6) {
+			return new ResponseEntity<>("Password must have more than 6 characters", HttpStatus.FORBIDDEN);
 		}
 		Person newPerson = new Person(null, email, passwordEncoder.encode(password));
 		personRepository.save(newPerson);

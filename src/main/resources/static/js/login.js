@@ -67,7 +67,7 @@ btnLogout.addEventListener('click', function(evt) {
 	}, 2000);
 });
 
-// Registración de un usuario nuevo
+// REGISTER (Registración de un usuario nuevo)
 
 btnRegister.addEventListener('click', function(evt) {
 	evt.preventDefault();
@@ -80,6 +80,13 @@ btnRegister.addEventListener('click', function(evt) {
 		.done(function() {
 			console.log("registration ok");
 			$("#response").html(registOk).show();
+			
+			$.post("/api/login", // If registration ok, log in automatically
+		{
+			email: form["usrname"].value,
+			password: form["psw"].value
+		})
+		
 		})
 		.fail(function() {
 			console.log("registration bad");

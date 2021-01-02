@@ -16,15 +16,12 @@
           form.classList.remove('is-valid');
           //$("#login").attr( 'disabled', true );
         }
-        form.classList.add('was-validated'); 
-        
-       if (form.checkValidity() === true) {
+        if (form.checkValidity() === true) {
        // $("#login").removeAttr( 'disabled' );
        form.classList.add('is-valid');
         }
-        
+        form.classList.add('was-validated');
       }, false);
     });
   }, false);
 })();
-
