@@ -4,14 +4,15 @@
 
 const loginOk = "¡Bienvenido!";
 const loginBad = "Usuario o contraseña erróneos";
-const logoutOk = "¡Hasta luego!";
-const logoutBad = "Error al salir";
+//const logoutOk = "¡Hasta luego!";
+//const logoutBad = "Error al salir";
 const registOk = "¡Registrado correctamente!";
-const registBad = "Error al registrarse";
+//const registBad = "Error al registrarse";
 
 var btnLogin = document.getElementById('login');
 var btnLogout = document.getElementById('logout');
 var btnRegister = document.getElementById('registrarse');
+var data; // Respuesta desde el backEnd
 
 // LOGIN
 
@@ -51,14 +52,15 @@ btnLogin.addEventListener('click', function(evt) {
 
 btnLogout.addEventListener('click', function(evt) {
 	evt.preventDefault();
-	$.post("/api/logout")
-		.done(function() {
+	$.post("/logout") // Handled by Person controller
+		.done(function(data) {
 			console.log("logout ok");
-			$("#response").html(logoutOk).show();
+			$("#response").html(data.ok);
+			$.post("/api/logout"); //Handled by SpringSecurity
 		})
-		.fail(function() {
+		.fail(function(data) {
 			console.log("logout bad");
-			$("#response").html(logoutBad).show();
+			$("#response").html(data.responseJSON.error);
 		})
 	$("#loginModal").modal("hide");
 	setTimeout(function() {
@@ -88,9 +90,9 @@ btnRegister.addEventListener('click', function(evt) {
 		})
 		
 		})
-		.fail(function() {
+		.fail(function(data) {
 			console.log("registration bad");
-			$("#response").html(registBad).show();
+			$('#response').html(data.responseText);	
 		})
 	$("#loginModal").modal("hide");
 	setTimeout(function() {

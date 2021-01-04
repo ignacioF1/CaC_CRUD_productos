@@ -66,17 +66,17 @@ public class PersonController {
 			@RequestParam String email, @RequestParam String password) {
 
 		if (email.isEmpty() || password.isEmpty()) {
-			return new ResponseEntity<>("Missing data", HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>("Datos faltantes", HttpStatus.FORBIDDEN);
 		}
 
 		if (personRepository.findByEmail(email) != null) {
-			return new ResponseEntity<>("Name already in use", HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>("Usuario no disponible", HttpStatus.FORBIDDEN);
 		}
 		if(Util.isValid(email) == false) {
-			return new ResponseEntity<>("Email not correct", HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>("Correo inválido", HttpStatus.FORBIDDEN);
 		}
 		if(password.length() < 6) {
-			return new ResponseEntity<>("Password must have more than 6 characters", HttpStatus.FORBIDDEN);
+			return new ResponseEntity<>("La contraseña debe contener al menos 6 caracteres", HttpStatus.FORBIDDEN);
 		}
 		Person newPerson = new Person(null, email, passwordEncoder.encode(password));
 		personRepository.save(newPerson);
@@ -86,9 +86,14 @@ public class PersonController {
 	// LOGOUT
 	@PostMapping(value = "/logout", produces = MediaType.APPLICATION_JSON_VALUE)
 
-	public ResponseEntity<Object> logout() {
+	public ResponseEntity<Object> logout(Authentication authentication) {
 
-		return new ResponseEntity<>("Logout OK", HttpStatus.OK);
+	if (Util.isGuest(authentication)) {   // Check if guest
+	//return new ResponseEntity<>("Error, sesión no iniciada", HttpStatus.OK);
+		return new ResponseEntity<>(Util.makeMap("error","¡Sesión no iniciada!"), HttpStatus.BAD_REQUEST);
+	}
+		//return new ResponseEntity<>("¡Hasta luego!", HttpStatus.OK);
+		return new ResponseEntity<>(Util.makeMap("ok","¡Hasta luego!"), HttpStatus.OK);
 	}
 
 	
@@ -103,7 +108,7 @@ public class PersonController {
 		return ResponseEntity.ok(personRepository.findByEmail(authentication.getName()));
 
 		  }
-
+	
 	
 	
 	@GetMapping(value = "/person/{idPerson}", produces = MediaType.APPLICATION_JSON_VALUE)

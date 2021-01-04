@@ -18,4 +18,7 @@
 - SWAGGER
 - LOMBOK
 
-## OJO EN CONSTRUCCION A medida que vamos avanzando voy comiteando!!
+## ATENCIÓN
+
+- Ejecutar el servidor de MongoDB antes de ejecutar el programa
+- La base de datos ecommerce almacena productos y person (los usuarios que se logean a la plataforma)
